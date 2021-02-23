@@ -5,7 +5,9 @@ name: ci
 # Run this workflow every time a new commit pushed to your repository
 on: 
   push:
-    branches: main
+    branches:
+      - main
+      - master
     tags:
       - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
 env:
