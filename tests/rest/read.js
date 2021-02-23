@@ -26,4 +26,19 @@ describe('read', function () {
       })
       .expect(200, done)
   })
+
+  it('can read comments', function(done) {
+    rest_service()
+      .get('/comments?id=eq.1')
+      .withRole('webuser')
+      .expect('Content-Type', /json/)
+      .expect(200, done)
+      .expect( r => {
+        r.body[0].id.should.equal(1)
+        r.body[0].body.should.equal('a comment')
+        r.body[0].todo_id.should.equal(1)
+        r.body[0].user_id.should.equal(1)
+      })
+  });
+
 })

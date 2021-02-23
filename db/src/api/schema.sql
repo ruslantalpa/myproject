@@ -19,3 +19,6 @@ create type customer as (id int, name text, email text, role text);
 \ir me.sql
 \ir todos.sql
 \ir search_todos.sql
+-- ... there are some lines above
+\ir comments.sql
+

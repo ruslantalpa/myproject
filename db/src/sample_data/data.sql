@@ -34,3 +34,6 @@ ALTER SEQUENCE data.todo_id_seq RESTART WITH 7;
 -- analyze modified tables
 ANALYZE data.user;
 ANALYZE data.todo;
+
+INSERT INTO data.comment(id,body,todo_id,user_id)
+VALUES (1,'a comment',1,1);

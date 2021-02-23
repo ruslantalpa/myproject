@@ -5,3 +5,6 @@ set search_path = data, public;
 -- import our application models
 \ir user.sql
 \ir todo.sql
+-- ... there are some lines above
+\ir comment.sql
+

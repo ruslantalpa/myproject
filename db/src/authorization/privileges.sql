@@ -86,3 +86,51 @@ grant select, insert, update, delete on api.todos to webuser;
 -- anonymous users can only request specific columns from this view
 grant select (id, todo) on api.todos to anonymous;
 -------------------------------------------------------------------------------
+
+
+-- allow the api to access underlying table,
+-- this is not the same as giving users access though
+-- notice how for insert/update we only allow the api to supply the body,todo_id
+-- but not id,user_id columns
+grant 
+    select, 
+    insert (body, todo_id), 
+    update (body, todo_id), 
+    delete 
+on data.comment to api;
+
+-- set the policy that defines what rows from the table are accessible to the api
+-- this policy can also take into account the specific application user
+-- that is trying to access the data ( notice the use of request.user_id() )
+drop policy if exists comment_access_policy on data.comment;
+create policy comment_access_policy on data.comment to api 
+using (
+    -- allow only authenticated users to see the comments in the system
+    request.user_role() = 'webuser'
+)
+with check (
+    -- authenticated users can only update/delete their comment
+    request.user_role() = 'webuser' and request.user_id() = user_id
+);
+
+-- set the owner of the comments view (the endpoint) to the correct user
+-- this is needed so that the above policy is applied
+alter view api.comments owner to api;
+
+-- authenticated users can see (select) everything 
+-- but they can insert/update only specific columns
+grant
+    select,
+    insert (body, todo_id),
+    update (body, todo_id),
+    delete
+on api.comments to webuser;
+
+-- this line is needed so that authenticated users can "request" new ids
+-- from the sequence used by the id column
+grant usage on data.comment_id_seq to webuser;
+
+-- anonymous users do not have access to the comments at all, but if we wanted to enable that
+-- we could have a line similar to this one
+-- grant select (id, body, todo_id) on api.comments to anonymous;
+
