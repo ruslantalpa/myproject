@@ -36,7 +36,7 @@ describe('read', function () {
       .expect( r => {
         r.body[0].id.should.equal(1)
         r.body[0].body.should.equal('a comment')
-        r.body[0].todo_id.should.equal(1)
+        r.body[0].todo_id.should.equal(2)
         r.body[0].user_id.should.equal(1)
       })
   });

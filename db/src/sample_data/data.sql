@@ -36,4 +36,4 @@ ANALYZE data.user;
 ANALYZE data.todo;
 
 INSERT INTO data.comment(id,body,todo_id,user_id)
-VALUES (1,'a comment',1,1);
+VALUES (1,'a comment',2,1);
