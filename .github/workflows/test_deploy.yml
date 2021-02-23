@@ -20,7 +20,7 @@ env:
 
   # application settings
   APP_ID:
-  APP_DOMAIN:
+  APP_DOMAIN: ${{ secrets.APP_DOMAIN }}
   APP_NAME: "my application"
   APP_DB_HOST: ${{ secrets.APP_DB_HOST }}
   APP_DB_PORT: 5432
@@ -37,7 +37,7 @@ env:
   UPLOAD_STATIC_FILES: false
   SFTP_HOST: sftp.app.subzero.cloud
   SFTP_PORT: 2323
-  SFTP_USER: ${{ secrets.SUBZERO_EMAIL }}.${{ env.APP_DOMAIN }}
+  SFTP_USER: ${{ secrets.SUBZERO_EMAIL }}.${{ secrets.APP_DOMAIN }}
   SFTP_PASSWORD: ${{ secrets.SUBZERO_PASSWORD }}
 
   # helper vars
