@@ -23,7 +23,7 @@ env:
   APP_DOMAIN: ${{ secrets.APP_DOMAIN }}
   APP_NAME: "my application"
   APP_DB_HOST: ${{ secrets.APP_DB_HOST }}
-  APP_DB_PORT: 5432
+  APP_DB_PORT: ${{ secrets.APP_DB_PORT }}
   APP_DB_NAME: ${{ secrets.APP_DB_NAME }}
   APP_DB_MASTER_USER: ${{ secrets.APP_DB_MASTER_USER }}
   APP_DB_MASTER_PASSWORD: ${{ secrets.APP_DB_MASTER_PASSWORD }}
@@ -41,7 +41,7 @@ env:
   SFTP_PASSWORD: ${{ secrets.SUBZERO_PASSWORD }}
 
   # helper vars
-  MASTER_DB_CONNECTION_STRING: "${{ secrets.APP_DB_MASTER_USER }}:${{ secrets.APP_DB_MASTER_PASSWORD }}@${{ secrets.APP_DB_HOST }}:${{ env.APP_DB_PORT }}/${{ secrets.APP_DB_NAME }}?sslmode=prefer"
+  MASTER_DB_CONNECTION_STRING: "${{ secrets.APP_DB_MASTER_USER }}:${{ secrets.APP_DB_MASTER_PASSWORD }}@${{ secrets.APP_DB_HOST }}:${{ secrets.APP_DB_PORT }}/${{ secrets.APP_DB_NAME }}?sslmode=prefer"
   AUTHENTICATOR_DB_CONNECTION_STRING: "${{ secrets.APP_DB_AUTHENTICATOR_USER }}:${{ secrets.APP_DB_AUTHENTICATOR_PASSWORD }}@${{ secrets.APP_DB_HOST }}:${{ secrets.APP_DB_PORT }}/${{ secrets.APP_DB_NAME }}?sslmode=prefer"
   SUBZERO: ".github/workflows/subzero.sh"
 
