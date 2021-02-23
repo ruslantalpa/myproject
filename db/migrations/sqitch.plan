@@ -2,3 +2,4 @@
 %project=app
 
 20210223104353-initial 2021-02-23T10:44:07Z root <root@docker-desktop> # Add 20210223104353-initial migration
+20210223141125-comments_model_and_endpoint 2021-02-23T14:11:40Z root <root@docker-desktop> # Add 20210223141125-comments_model_and_endpoint migration
